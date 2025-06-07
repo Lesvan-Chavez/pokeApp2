@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 
 export default function Pokemon() {
     const [pokemonData, setPokemonData] = useState([]);
-    const { pokeID } = useParams();
+    const { pokeID  } = useParams();
 
 const fetchPokemon = () => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokeID}`)
@@ -28,7 +28,7 @@ useEffect(() => {
         <div className="pokemon">
         <h1>{name}</h1>
         <p>ID: {id}</p>
-        <img src={imageUrl} alt={name} />
+        <img className="m-auto" src={imageUrl} alt={name} />
     </div>
         
 )

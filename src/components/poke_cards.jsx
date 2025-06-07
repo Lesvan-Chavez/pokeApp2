@@ -6,7 +6,6 @@ import PokemonImage from './pokemonImage';
 
 export default function PokeCards({ col = 5 }) {
     const [pokemonList, setPokemonList] = useState([]);
-    const [pokeData, setPokeData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [offset, setOffset] = useState(0);
     const [pokeCount, setPokeCount] = useState(0);
@@ -42,7 +41,7 @@ export default function PokeCards({ col = 5 }) {
     }, [offset, limit])
 
 
-    const pageNumberDropDown = () => {
+    const dropDownOptions = () => {
         const numberOfPages = Math.ceil(pokeCount / limit);
         console.log("number of page", numberOfPages)
         return (
@@ -52,8 +51,6 @@ export default function PokeCards({ col = 5 }) {
                     <select name='pageNumbers' id="pageNumbers" className='select select-bordered' value={currentPage} onChange={(e) => setCurrentPage(Number(e.target.value))}>
                         {Array.from({ length: numberOfPages }, ((page, i) => {
                             const pageNumber = i + 1;
-                            console.log('Page number', pageNumber);
-                            console.log("index", i);
                             return (
                                 <option key={i} value={pageNumber}>{pageNumber}</option>
                             )
@@ -90,26 +87,20 @@ export default function PokeCards({ col = 5 }) {
 
     return (
         <div>
-            {pageNumberDropDown()}
+            {dropDownOptions()}
             <div className={`grid grid-cols-${col} gap-4`}>
                 {pokemonList.map((pokemon, index) => {
                     const urlParts = pokemon.url.split('/');
+                    console.log("url parts", urlParts);
                     const pokeID = Number(urlParts[urlParts.length - 2]);
                     const pokeLinkUrl = `/pokemon/${pokeID}`;
-                    let errored = false;
-                    let defaultImage = !errored ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokeID}.svg` : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`
-
-                    const handleError = () => {
-                        errored = true;
-                        console.log('it errored out and it ran the function')
-                        return defaultImage
-                    }
+                
                     return (
                         <Link to={pokeLinkUrl} key={pokeID} className='w-36 col-span-1'>
                             <div className='card shadow-sm' >
                                 <figure>
 
-                                    <PokemonImage pokeID={pokeID} />
+                                    <PokemonImage pokeID={pokeID} pokemonName={pokemon.name}/>
 
                                 </figure>
                                 <h2 className='card-title'>{pokemon.name}</h2>

@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <PokeCards col={7}/>
+      <PokeCards />
     </>
   )
 }

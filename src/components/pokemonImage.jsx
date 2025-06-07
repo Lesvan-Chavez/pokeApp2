@@ -6,7 +6,7 @@ export default function PokemonImage({ pokeID, pokemonName, className }) {
 
 
     const dreamWorldSprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokeID}.svg`;
-    const defaultSprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.svg`;
+    const defaultSprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`;
 
     const [currentImage, setCurrentImage] = useState(dreamWorldSprite);
     const [hasTriedDreamWorld, setHasTriedDreamWorld] = useState(false);
