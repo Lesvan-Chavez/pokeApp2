@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 
 
@@ -17,10 +17,20 @@ const fetchPokemon = () => {
     })
 }    
 
+useEffect(() => {
+    fetchPokemon();
+}, [pokeID]);
+    
+    const { name, id, sprites } = pokemonData;
+    const imageUrl = sprites?.other?.dream_world?.front_default || sprites?.front_default;
 
     return (
-        <div>
-            
-        </div>
-    )
+        <div className="pokemon">
+        <h1>{name}</h1>
+        <p>ID: {id}</p>
+        <img src={imageUrl} alt={name} />
+    </div>
+        
+)
+    
 }
