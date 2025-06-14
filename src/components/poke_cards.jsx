@@ -10,8 +10,8 @@ export default function PokeCards({ col = 5 }) {
     const [offset, setOffset] = useState(0);
     const [pokeCount, setPokeCount] = useState(0);
 
-    const pokeLimitOptions = [10, 25, 50, 100];
-    if (pokeCount > 100) {
+    const pokeLimitOptions = [10, 25, 50, 100, 150];
+    if (pokeCount > 150) {
         pokeLimitOptions.push(pokeCount);
     }
     const [limit, setLimit] = useState(pokeLimitOptions[0]);
@@ -103,7 +103,7 @@ export default function PokeCards({ col = 5 }) {
                                     <PokemonImage pokeID={pokeID} pokemonName={pokemon.name}/>
 
                                 </figure>
-                                <h2 className='card-title'>{pokemon.name}</h2>
+                                <h2 className='card-title capitalize'>{pokemon.name}</h2>
                             </div>
                         </Link>
                     )
